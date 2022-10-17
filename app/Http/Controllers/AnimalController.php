@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\Animal_Usuario;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
@@ -46,6 +47,13 @@ class AnimalController extends Controller
     public function store(Request $request)
     {
         $c = Animal::create($request->all());
+
+        $relacao = new Aniamal_Usuario;
+        $relacao['animal_id'] = $request->id;
+        $relacao['usuario_id'] = 1;
+        $relacao['data_aquisicao'] = '';
+        $relacao['data_venda'] = '';
+
         return redirect()->route('animal.index');
     }
 
