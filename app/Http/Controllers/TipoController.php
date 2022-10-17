@@ -57,7 +57,7 @@ class TipoController extends Controller
      */
     public function show(Tipo $tipo)
     {
-        $dados = Tipo::find($id);
+        $dados = Tipo::find($tipo['id']);
         return view('tipo.show', ['tipo'=>$dados]);
     }
 
@@ -69,7 +69,7 @@ class TipoController extends Controller
      */
     public function edit(Tipo $tipo)
     {
-        $dados = Tipo::find($id);
+        $dados = Tipo::find($tipo['id']);
         return view('tipo.edit', ['tipo'=>$dados]);
     }
 
@@ -82,7 +82,7 @@ class TipoController extends Controller
      */
     public function update(Request $request, Tipo $tipo)
     {
-        Tipo::filnd($id)->update($request->all());
+        Tipo::filnd($tipo['id'])->update($request->all());
         return redirect()->route('tipo.index');
     }
 
@@ -94,7 +94,7 @@ class TipoController extends Controller
      */
     public function destroy(Tipo $tipo)
     {
-        Tipo::destroy($id);
+        Tipo::destroy($tipo['id']);
         return redirect()->route('tipo.index');
     }
 }

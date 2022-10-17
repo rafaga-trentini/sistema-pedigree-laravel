@@ -9,6 +9,8 @@ class Raca extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['raca', 'sexo', 'cor'];
+
     public function animals() {
         return $this->hasMany('App\Models\Animal');
     }

@@ -9,6 +9,8 @@ class Estado extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['descricao', 'sigla'];
+
     public function cidades() {
         return $this->hasMany('App\Models\Cidade');
     }

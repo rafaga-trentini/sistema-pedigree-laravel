@@ -8,9 +8,9 @@
 <input type="text" value="@if (isset($endereco['numero'])) {{ $endereco['numero'] }} @endif" id="numero" name="numero"></input>
 <label for="cep">cep</label>
 <input type="text" value="@if (isset($endereco['cep'])) {{ $endereco['cep'] }} @endif" id="cep" name="cep"></input>
-<label for="usuario">ID usuario</label>
-<input type="text" value="@if (isset($endereco['usuario_id'])) {{ $endereco['usuario_id'] }} @endif" id="usuario" name="usuario"></input>
-<label for="cidade">ID cidade</label>
-<input type="text" value="@if (isset($endereco['cidade_id'])) {{ $endereco['cidade_id'] }} @endif" id="cidade" name="cidade"></input>
+<label for="usuario_id">ID usuario</label>
+<input type="text" value="@if (isset($endereco['usuario_id'])) {{ $endereco['usuario_id'] }} @endif" id="usuario_id" name="usuario_id"></input>
+<label for="cidade_id">ID cidade</label>
+<input type="text" value="@if (isset($endereco['cidade_id'])) {{ $endereco['cidade_id'] }} @endif" id="cidade_id" name="cidade_id"></input>
 
 <input type="submit" value="Enviar"></input>

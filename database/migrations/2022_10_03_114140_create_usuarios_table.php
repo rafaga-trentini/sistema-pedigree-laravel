@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nome',255);
             $table->string('username',50);
             $table->string('senha',50);
-            $table->boolean('isCanil');
+            $table->string('isCanil', 50);
             $table->timestamps();
         });
     }

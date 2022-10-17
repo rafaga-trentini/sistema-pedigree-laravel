@@ -9,6 +9,8 @@ class Tipo extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['descricao'];
+
     public function animals() {
         return $this->hasMany('App\Models\Animal');
     }

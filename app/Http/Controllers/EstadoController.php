@@ -57,7 +57,7 @@ class EstadoController extends Controller
      */
     public function show(Estado $estado)
     {
-        $dados = Estado::find($id);
+        $dados = Estado::find($estado['id']);
         return view('estado.show', ['estado'=>$dados]);
     }
 
@@ -69,7 +69,7 @@ class EstadoController extends Controller
      */
     public function edit(Estado $estado)
     {
-        $dados = Estado::find($id);
+        $dados = Estado::find($estado['id']);
         return view('estado.edit', ['estado'=>$dados]);
     }
 
@@ -82,7 +82,7 @@ class EstadoController extends Controller
      */
     public function update(Request $request, Estado $estado)
     {
-        Estado::filnd($id)->update($request->all());
+        Estado::filnd($estado['id'])->update($request->all());
         return redirect()->route('estado.index');
     }
 
@@ -94,7 +94,7 @@ class EstadoController extends Controller
      */
     public function destroy(Estado $estado)
     {
-        Estado::destroy($id);
+        Estado::destroy($estado['id']);
         return redirect()->route('estado.index');
     }
 }

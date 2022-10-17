@@ -9,6 +9,8 @@ class Usuario extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nome', 'username', 'senha', 'isCanil'];
+
     public function endereco() {
         return $this->hasOne('App\Models\Endereco');
     }

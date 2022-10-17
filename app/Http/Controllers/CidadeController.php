@@ -57,7 +57,7 @@ class CidadeController extends Controller
      */
     public function show(Cidade $cidade)
     {
-        $dados = Cidade::find($id);
+        $dados = Cidade::find($cidade['id']);
         return view('cidade.show', ['cidade'=>$dados]);
     }
 
@@ -69,7 +69,7 @@ class CidadeController extends Controller
      */
     public function edit(Cidade $cidade)
     {
-        $dados = Cidade::find($id);
+        $dados = Cidade::find($cidade['id']);
         return view('cidade.edit', ['cidade'=>$dados]);
     }
 
@@ -82,7 +82,7 @@ class CidadeController extends Controller
      */
     public function update(Request $request, Cidade $cidade)
     {
-        Cidade::filnd($id)->update($request->all());
+        Cidade::filnd($cidade['id'])->update($request->all());
         return redirect()->route('cidade.index');
     }
 
@@ -94,7 +94,7 @@ class CidadeController extends Controller
      */
     public function destroy(Cidade $cidade)
     {
-        Cidade::destroy($id);
+        Cidade::destroy($cidade['id']);
         return redirect()->route('cidade.index');
     }
 }

@@ -57,7 +57,7 @@ class EnderecoController extends Controller
      */
     public function show(Endereco $endereco)
     {
-        $dados = Endereco::find($id);
+        $dados = Endereco::find($endereco['id']);
         return view('endereco.show', ['endereco'=>$dados]);
     }
 
@@ -69,7 +69,7 @@ class EnderecoController extends Controller
      */
     public function edit(Endereco $endereco)
     {
-        $dados = Endereco::find($id);
+        $dados = Endereco::find($endereco['id']);
         return view('endereco.edit', ['endereco'=>$dados]);
     }
 
@@ -82,7 +82,7 @@ class EnderecoController extends Controller
      */
     public function update(Request $request, Endereco $endereco)
     {
-        Endereco::filnd($id)->update($request->all());
+        Endereco::filnd($endereco['id'])->update($request->all());
         return redirect()->route('endereco.index');
     }
 
@@ -94,7 +94,7 @@ class EnderecoController extends Controller
      */
     public function destroy(Endereco $endereco)
     {
-        Endereco::destroy($id);
+        Endereco::destroy($endereco['id']);
         return redirect()->route('endereco.index');
     }
 }

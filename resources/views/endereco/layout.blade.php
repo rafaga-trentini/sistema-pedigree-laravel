@@ -5,7 +5,7 @@
     <title>@yield('titulo')</title>
 </head>
 <body>
-    @component('contato.nav')@endcomponent
+    @component('endereco.nav')@endcomponent
 
     @yield('conteudo')
 </body>

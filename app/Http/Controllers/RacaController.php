@@ -57,7 +57,7 @@ class RacaController extends Controller
      */
     public function show(Raca $raca)
     {
-        $dados = Raca::find($id);
+        $dados = Raca::find($raca['id']);
         return view('raca.show', ['raca'=>$dados]);
     }
 
@@ -69,7 +69,7 @@ class RacaController extends Controller
      */
     public function edit(Raca $raca)
     {
-        $dados = Raca::find($id);
+        $dados = Raca::find($raca['id']);
         return view('raca.edit', ['raca'=>$dados]);
     }
 
@@ -82,7 +82,7 @@ class RacaController extends Controller
      */
     public function update(Request $request, Raca $raca)
     {
-        Raca::filnd($id)->update($request->all());
+        Raca::filnd($raca['id'])->update($request->all());
         return redirect()->route('raca.index');
     }
 
@@ -94,7 +94,7 @@ class RacaController extends Controller
      */
     public function destroy(Raca $raca)
     {
-        Raca::destroy($id);
+        Raca::destroy($raca['id']);
         return redirect()->route('raca.index');
     }
 }

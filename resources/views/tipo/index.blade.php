@@ -3,17 +3,17 @@
 @section('titulo', 'Listagem de tipos')
 
 @section('conteudo')
-    <form action="{{ route('tipo.index' }}" method="get">
+    <!-- <form action="{{ route('tipo.index') }}" method="get">
         @method("GET")
         <input type="text" id="filtro" name="filtro"></input>
         <input type="submit" value="Filtrar"></input>
-    </form>
+    </form> -->
     <table class="table table-hover" style="margin-bottom: inherit">
         <tbody>
             @foreach ($tipos as $tipo)
             
             <tr>
-                <td>{{ $tipo['descricao'] }}</td>
+                <td>Tipo: {{ $tipo['descricao'] }}</td>
                 <td><a href="{{ route('tipo.edit', $tipo['id']) }}">Edit</a></td>
                 <td><a href="{{ route('tipo.destroy', $tipo['id']) }}">Show</a></td>
                 <td>
