@@ -1,12 +1,8 @@
 <?php
 
 namespace Database\Factories;
-<<<<<<< HEAD
 use App\Models\Usuario;
 use App\Models\Cidade;
-
-=======
->>>>>>> 1ccdd1141b9ad2f9a7d19614779fbab132c547eb
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
