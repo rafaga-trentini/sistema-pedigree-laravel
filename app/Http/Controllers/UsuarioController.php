@@ -14,13 +14,9 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        // $dados = array();
-        // if (request('find') != null) {
-        //     $busca = request('find');
-        //     $dados = Usuario::where('nome' , 'like', "$busca%")-get();
-        // } else {
-        //     $dados = Usuario::all();
-        // }
+        $filtro = request()->input('filtro');
+        $usuarios = Usuario::where('nome', 'LIKE', $filtro.'%')->orderby('nome')->paginate(5);
+        return view('usuario/index')->with('usuarios', $usuarios)->with('filtro', $filtro);
 
         $dados = Usuario::all();
         
@@ -57,7 +53,7 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        $dados = Usuario::find($id);
+        $dados = Usuario::find($usuario['id']);
         return view('usuario.show', ['usuario'=>$dados]);
     }
 
@@ -69,7 +65,7 @@ class UsuarioController extends Controller
      */
     public function edit(Usuario $usuario)
     {
-        $dados = Usuario::find($id);
+        $dados = Usuario::find($usuario['id']);
         return view('usuario.edit', ['usuario'=>$dados]);
     }
 
@@ -82,7 +78,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-        Usuario::filnd($id)->update($request->all());
+        Usuario::filnd($usuario['id'])->update($request->all());
         return redirect()->route('usuario.index');
     }
 
@@ -94,7 +90,7 @@ class UsuarioController extends Controller
      */
     public function destroy(Usuario $usuario)
     {
-        Usuario::destroy($id);
+        Usuario::destroy($usuario['id']);
         return redirect()->route('usuario.index');
     }
 }

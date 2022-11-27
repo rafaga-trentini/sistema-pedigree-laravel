@@ -3,19 +3,25 @@
 @section('titulo', 'Listagem de racas')
 
 @section('conteudo')
-    <form action="{{ route('raca.index' }}" method="get">
-        @method("GET")
-        <input type="text" id="filtro" name="filtro"></input>
-        <input type="submit" value="Filtrar"></input>
+    <form action="{{ route('raca.index') }}" method="get">
+        <div class="row">
+            <div>
+                <input clFass="form-control" type="text" name="filtro" id="filtro">
+                <button class="btn btn-success" type="submit">Pesquisar</button>
+            </div>
+        </div>
     </form>
+    <div class="card-footer">
+        {{ $racas ->appends(array('filtro' => $filtro))->links() }}
+    </div>
     <table class="table table-hover" style="margin-bottom: inherit">
         <tbody>
             @foreach ($racas as $raca)
             
             <tr>
-                <td>{{ $raca['raca'] }}</td>
-                <td>{{ $raca['sexo'] }}</td>
-                <td>{{ $raca['cor'] }}</td>
+                <td>Raca: {{ $raca['raca'] }}</td>
+                <td>Sexo: {{ $raca['sexo'] }}</td>
+                <td>Cor: {{ $raca['cor'] }}</td>
                 <td><a href="{{ route('raca.edit', $raca['id']) }}">Edit</a></td>
                 <td><a href="{{ route('raca.destroy', $raca['id']) }}">Show</a></td>
                 <td>
@@ -29,4 +35,7 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        {{ $racas->links() }}
+    </div>
 @endsection

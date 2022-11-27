@@ -14,17 +14,10 @@ class RacaController extends Controller
      */
     public function index()
     {
-        // $dados = array();
-        // if (request('find') != null) {
-        //     $busca = request('find');
-        //     $dados = Raca::where('nome' , 'like', "$busca%")-get();
-        // } else {
-        //     $dados = Raca::all();
-        // }
+        $filtro = request()->input('filtro');
+        $racas = Raca::where('raca', 'LIKE', $filtro.'%')->orderby('raca')->paginate(5);
+        return view('raca/index')->with('racas', $racas)->with('filtro', $filtro);
 
-        $dados = Raca::all();
-        
-        return view("raca.index", ['racas'=>$dados]);
     }
 
     /**
@@ -57,7 +50,7 @@ class RacaController extends Controller
      */
     public function show(Raca $raca)
     {
-        $dados = Raca::find($id);
+        $dados = Raca::find($raca['id']);
         return view('raca.show', ['raca'=>$dados]);
     }
 
@@ -69,7 +62,7 @@ class RacaController extends Controller
      */
     public function edit(Raca $raca)
     {
-        $dados = Raca::find($id);
+        $dados = Raca::find($raca['id']);
         return view('raca.edit', ['raca'=>$dados]);
     }
 
@@ -82,7 +75,7 @@ class RacaController extends Controller
      */
     public function update(Request $request, Raca $raca)
     {
-        Raca::filnd($id)->update($request->all());
+        Raca::filnd($raca['id'])->update($request->all());
         return redirect()->route('raca.index');
     }
 
@@ -94,7 +87,7 @@ class RacaController extends Controller
      */
     public function destroy(Raca $raca)
     {
-        Raca::destroy($id);
+        Raca::destroy($raca['id']);
         return redirect()->route('raca.index');
     }
 }

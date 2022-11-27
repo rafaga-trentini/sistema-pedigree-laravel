@@ -24,6 +24,10 @@ return new class extends Migration
             $table->foreign('tipo_id')->references('id')->on('tipos');
             $table->unsignedBigInteger('raca_id');
             $table->foreign('raca_id')->references('id')->on('racas');
+            $table->unsignedBigInteger('pai')->nullable();
+            $table->foreign('pai')->references('id')->on('animals');
+            $table->unsignedBigInteger('mae')->nullable();
+            $table->foreign('mae')->references('id')->on('animals');
             $table->timestamps();
         });
     }

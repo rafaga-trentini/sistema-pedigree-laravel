@@ -14,17 +14,13 @@ class CidadeController extends Controller
      */
     public function index()
     {
-        // $dados = array();
-        // if (request('find') != null) {
-        //     $busca = request('find');
-        //     $dados = Cidade::where('nome' , 'like', "$busca%")-get();
-        // } else {
-        //     $dados = Cidade::all();
-        // }
+        $filtro = request()->input('filtro');
+        $cidades = Cidade::where('descricao', 'LIKE', $filtro.'%')->orderby('descricao')->paginate(5);
+        return view('cidade/index')->with('cidades', $cidades)->with('filtro', $filtro);
 
-        $dados = Cidade::all();
+        // $dados = Cidade::paginate(10);
         
-        return view("cidade.index", ['cidades'=>$dados]);
+        // return view("cidade.index", ['cidades'=>$dados]);
     }
 
     /**
@@ -57,7 +53,7 @@ class CidadeController extends Controller
      */
     public function show(Cidade $cidade)
     {
-        $dados = Cidade::find($id);
+        $dados = Cidade::find($cidade['id']);
         return view('cidade.show', ['cidade'=>$dados]);
     }
 
@@ -69,7 +65,7 @@ class CidadeController extends Controller
      */
     public function edit(Cidade $cidade)
     {
-        $dados = Cidade::find($id);
+        $dados = Cidade::find($cidade['id']);
         return view('cidade.edit', ['cidade'=>$dados]);
     }
 
@@ -82,7 +78,7 @@ class CidadeController extends Controller
      */
     public function update(Request $request, Cidade $cidade)
     {
-        Cidade::filnd($id)->update($request->all());
+        Cidade::filnd($cidade['id'])->update($request->all());
         return redirect()->route('cidade.index');
     }
 
@@ -94,7 +90,7 @@ class CidadeController extends Controller
      */
     public function destroy(Cidade $cidade)
     {
-        Cidade::destroy($id);
+        Cidade::destroy($cidade['id']);
         return redirect()->route('cidade.index');
     }
 }

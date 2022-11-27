@@ -14,17 +14,10 @@ class TipoController extends Controller
      */
     public function index()
     {
-        // $dados = array();
-        // if (request('find') != null) {
-        //     $busca = request('find');
-        //     $dados = Tipo::where('nome' , 'like', "$busca%")-get();
-        // } else {
-        //     $dados = Tipo::all();
-        // }
+        $filtro = request()->input('filtro');
+        $tipos = Tipo::where('descricao', 'LIKE', $filtro.'%')->orderby('descricao')->paginate(5);
+        return view('tipo/index')->with('tipos', $tipos)->with('filtro', $filtro);
 
-        $dados = Tipo::all();
-        
-        return view("tipo.index", ['tipos'=>$dados]);
     }
 
     /**
@@ -57,7 +50,7 @@ class TipoController extends Controller
      */
     public function show(Tipo $tipo)
     {
-        $dados = Tipo::find($id);
+        $dados = Tipo::find($tipo['id']);
         return view('tipo.show', ['tipo'=>$dados]);
     }
 
@@ -69,7 +62,7 @@ class TipoController extends Controller
      */
     public function edit(Tipo $tipo)
     {
-        $dados = Tipo::find($id);
+        $dados = Tipo::find($tipo['id']);
         return view('tipo.edit', ['tipo'=>$dados]);
     }
 
@@ -82,7 +75,7 @@ class TipoController extends Controller
      */
     public function update(Request $request, Tipo $tipo)
     {
-        Tipo::filnd($id)->update($request->all());
+        Tipo::filnd($tipo['id'])->update($request->all());
         return redirect()->route('tipo.index');
     }
 
@@ -94,7 +87,7 @@ class TipoController extends Controller
      */
     public function destroy(Tipo $tipo)
     {
-        Tipo::destroy($id);
+        Tipo::destroy($tipo['id']);
         return redirect()->route('tipo.index');
     }
 }

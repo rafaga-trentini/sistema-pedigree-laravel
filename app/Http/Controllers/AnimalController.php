@@ -15,17 +15,10 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        // $dados = array();
-        // if (request('find') != null) {
-        //     $busca = request('find');
-        //     $dados = Animal::where('nome' , 'like', "$busca%")-get();
-        // } else {
-        //     $dados = Animal::all();
-        // }
+        $filtro = request()->input('filtro');
+        $animals = Animal::where('nome', 'LIKE', $filtro.'%')->orderby('nome')->paginate(5);
+        return view('animal/index')->with('animals', $animals)->with('filtro', $filtro);
 
-        $dados = Animal::all();
-        
-        return view("animal.index", ['animals'=>$dados]);
     }
 
     /**
@@ -48,12 +41,6 @@ class AnimalController extends Controller
     {
         $c = Animal::create($request->all());
 
-        $relacao = new Aniamal_Usuario;
-        $relacao['animal_id'] = $request->id;
-        $relacao['usuario_id'] = 1;
-        $relacao['data_aquisicao'] = '';
-        $relacao['data_venda'] = '';
-
         return redirect()->route('animal.index');
     }
 
@@ -65,7 +52,7 @@ class AnimalController extends Controller
      */
     public function show(animal $animal)
     {
-        $dados = Animal::find($id);
+        $dados = Animal::find($animal['id']);
         return view('animal.show', ['animal'=>$dados]);
     }
 
@@ -77,7 +64,7 @@ class AnimalController extends Controller
      */
     public function edit(Animal $animal)
     {
-        $dados = Animal::find($id);
+        $dados = Animal::find($animal['id']);
         return view('animal.edit', ['animal'=>$dados]);
     }
 
@@ -90,7 +77,7 @@ class AnimalController extends Controller
      */
     public function update(Request $request, Animal $animal)
     {
-        Animal::filnd($id)->update($request->all());
+        Animal::filnd($animal['id'])->update($request->all());
         return redirect()->route('animal.index');
     }
 
@@ -102,7 +89,7 @@ class AnimalController extends Controller
      */
     public function destroy(Animal $animal)
     {
-        Animal::destroy($id);
+        Animal::destroy($animal['id']);
         return redirect()->route('animal.index');
     }
 }

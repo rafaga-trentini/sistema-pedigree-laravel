@@ -14,17 +14,10 @@ class EstadoController extends Controller
      */
     public function index()
     {
-        // $dados = array();
-        // if (request('find') != null) {
-        //     $busca = request('find');
-        //     $dados = Estado::where('nome' , 'like', "$busca%")-get();
-        // } else {
-        //     $dados = Estado::all();
-        // }
+        $filtro = request()->input('filtro');
+        $estados = Estado::where('descricao', 'LIKE', $filtro.'%')->orderby('descricao')->paginate(5);
+        return view('estado/index')->with('estados', $estados)->with('filtro', $filtro);
 
-        $dados = Estado::all();
-        
-        return view("estado.index", ['estados'=>$dados]);
     }
 
     /**
@@ -57,7 +50,7 @@ class EstadoController extends Controller
      */
     public function show(Estado $estado)
     {
-        $dados = Estado::find($id);
+        $dados = Estado::find($estado['id']);
         return view('estado.show', ['estado'=>$dados]);
     }
 
@@ -69,7 +62,7 @@ class EstadoController extends Controller
      */
     public function edit(Estado $estado)
     {
-        $dados = Estado::find($id);
+        $dados = Estado::find($estado['id']);
         return view('estado.edit', ['estado'=>$dados]);
     }
 
@@ -82,7 +75,7 @@ class EstadoController extends Controller
      */
     public function update(Request $request, Estado $estado)
     {
-        Estado::filnd($id)->update($request->all());
+        Estado::filnd($estado['id'])->update($request->all());
         return redirect()->route('estado.index');
     }
 
@@ -94,7 +87,7 @@ class EstadoController extends Controller
      */
     public function destroy(Estado $estado)
     {
-        Estado::destroy($id);
+        Estado::destroy($estado['id']);
         return redirect()->route('estado.index');
     }
 }

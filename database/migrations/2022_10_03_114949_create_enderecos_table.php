@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('enderecos', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios');
-            $table->primary('usuario_id');
             $table->string('endereco', 255);
             $table->string('numero', 10)->nullable();
             $table->string('cep', 10);

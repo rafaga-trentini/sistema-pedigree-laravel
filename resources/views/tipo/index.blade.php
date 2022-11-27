@@ -3,17 +3,23 @@
 @section('titulo', 'Listagem de tipos')
 
 @section('conteudo')
-    <form action="{{ route('tipo.index' }}" method="get">
-        @method("GET")
-        <input type="text" id="filtro" name="filtro"></input>
-        <input type="submit" value="Filtrar"></input>
+    <form action="{{ route('tipo.index') }}" method="get">
+        <div class="row">
+            <div>
+                <input clFass="form-control" type="text" name="filtro" id="filtro">
+                <button class="btn btn-success" type="submit">Pesquisar</button>
+            </div>
+        </div>
     </form>
+    <div class="card-footer">
+        {{ $tipos ->appends(array('filtro' => $filtro))->links() }}
+    </div>
     <table class="table table-hover" style="margin-bottom: inherit">
         <tbody>
             @foreach ($tipos as $tipo)
             
             <tr>
-                <td>{{ $tipo['descricao'] }}</td>
+                <td>Tipo: {{ $tipo['descricao'] }}</td>
                 <td><a href="{{ route('tipo.edit', $tipo['id']) }}">Edit</a></td>
                 <td><a href="{{ route('tipo.destroy', $tipo['id']) }}">Show</a></td>
                 <td>
@@ -27,4 +33,7 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        {{ $tipos->links() }}
+    </div>
 @endsection

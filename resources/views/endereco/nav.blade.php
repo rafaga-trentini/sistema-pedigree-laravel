@@ -1,3 +1,3 @@
-<a href="{{ route('contato.create') }}">Inserir</a>
-<a href="{{ route('contato.index') }}">Listar</a>
+<a href="{{ route('endereco.create') }}">Inserir</a>
+<a href="{{ route('endereco.index') }}">Listar</a>
 <br><br>
