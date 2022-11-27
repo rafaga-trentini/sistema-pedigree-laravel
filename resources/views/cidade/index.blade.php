@@ -3,6 +3,7 @@
 @section('titulo', 'Listagem de cidades')
 
 @section('conteudo')
+<<<<<<< HEAD
 
     <form action="{{ route('cidade.index') }}" method="get">
         <div class="row">
@@ -16,6 +17,13 @@
         {{ $cidades ->appends(array('filtro' => $filtro))->links() }}
     </div>
 
+=======
+    <!-- <form action="{{ route('cidade.index') }}" method="get">
+        @method("GET")
+        <input type="text" id="filtro" name="filtro"></input>
+        <input type="submit" value="Filtrar"></input>
+    </form> -->
+>>>>>>> 1ccdd1141b9ad2f9a7d19614779fbab132c547eb
     <table class="table table-hover" style="margin-bottom: inherit">
         <tbody>
             @foreach ($cidades as $cidade)

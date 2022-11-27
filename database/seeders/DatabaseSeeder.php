@@ -24,10 +24,17 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EstadoSeeder::class,
             CidadeSeeder::class,
+<<<<<<< HEAD
             RacaSeeder::class,
             TipoSeeder::class,
             AnimalSeeder::class,
             UsuarioSeeder::class,
+=======
+            TipoSeeder::class,
+            AnimalSeeder::class,
+
+
+>>>>>>> 1ccdd1141b9ad2f9a7d19614779fbab132c547eb
             EnderecoSeeder::class,
         ]);
     }
